@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="网络赛道刷题">
+  <rect width="512" height="512" rx="96" fill="#F6F3EC"/>
+  <rect x="56" y="56" width="400" height="400" rx="26" fill="#FFFDF8" stroke="#C6BCA7" stroke-width="6"/>
+  <path d="M108 148h228" fill="none" stroke="#1A1A18" stroke-width="18" stroke-linecap="round"/>
+  <path d="M108 212h286" fill="none" stroke="#1A1A18" stroke-width="18" stroke-linecap="round"/>
+  <path d="M108 276h166" fill="none" stroke="#1A1A18" stroke-width="18" stroke-linecap="round"/>
+  <path d="M108 340h96" fill="none" stroke="#256B57" stroke-width="14" stroke-linecap="round"/>
+  <rect x="266" y="300" width="130" height="130" rx="10" fill="#A8352A"/>
+  <path d="M302 366l22 24 50-58" fill="none" stroke="#FFFDF8" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

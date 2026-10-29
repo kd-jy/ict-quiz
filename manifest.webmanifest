@@ -1,0 +1,20 @@
+{
+  "name": "网络赛道 · 刷题",
+  "short_name": "网络刷题",
+  "description": "网络赛道刷题：省赛题库与 WLAN 题库，支持专项练习、模考、错题本与掌握度统计。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F2EDE1",
+  "theme_color": "#F2EDE1",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

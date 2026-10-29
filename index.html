@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>网络赛道 · 刷题</title>
+<meta name="description" content="网络赛道刷题：省赛题库与 WLAN 题库，支持专项练习、模考、错题本与进度统计，全部数据存在本机。">
+<meta name="theme-color" content="#F2EDE1">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="stylesheet" href="assets/styles.css">
+<script>
+  (function () {
+    try {
+      var saved = JSON.parse(localStorage.getItem('ictquiz.v1') || 'null');
+      if (saved && saved.settings) {
+        if (saved.settings.theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        if (saved.settings.fontScale) document.documentElement.style.setProperty('--font-scale', String(saved.settings.fontScale));
+      }
+    } catch (err) { /* 隐私模式下忽略 */ }
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/home" aria-label="网络赛道刷题，回到练习首页">
+      <span class="brand-seal" aria-hidden="true">题</span>
+      <span class="brand-text">网络赛道<span class="brand-dot">·</span>刷题</span>
+    </a>
+    <div class="topbar-right">
+      <span class="topbar-progress" id="top-progress">已做 0 / 0</span>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="切换到深色主题" title="切换主题">
+        <svg class="ico theme-icon theme-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"></path>
+        </svg>
+        <svg class="ico theme-icon theme-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.8A8.6 8.6 0 0 1 9.2 3.5a8.6 8.6 0 1 0 11.3 11.3z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidenav" aria-label="主导航">
+    <p class="sidenav-title">目录</p>
+    <a class="nav-link" href="#/home" data-nav="home">
+      <span class="nav-ico">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 5.2h6.2A1.8 1.8 0 0 1 12 7v13a1.8 1.8 0 0 0-1.8-1.8H4z"></path>
+          <path d="M20 5.2h-6.2A1.8 1.8 0 0 0 12 7v13a1.8 1.8 0 0 1 1.8-1.8H20z"></path>
+        </svg>
+      </span>
+      <span class="nav-label">练习</span>
+      <span class="nav-rail" aria-hidden="true"></span>
+    </a>
+    <a class="nav-link" href="#/wrong" data-nav="wrong">
+      <span class="nav-ico">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4.2L6 21V4.5a1 1 0 0 1 1-1z"></path>
+        </svg>
+      </span>
+      <span class="nav-label">错题</span>
+      <span class="nav-count" data-count="wrong" hidden>0</span>
+      <span class="nav-rail" aria-hidden="true"></span>
+    </a>
+    <a class="nav-link" href="#/stats" data-nav="stats">
+      <span class="nav-ico">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 20.5h18"></path>
+          <path d="M6.5 20.5v-6"></path>
+          <path d="M12 20.5V5"></path>
+          <path d="M17.5 20.5v-9"></path>
+        </svg>
+      </span>
+      <span class="nav-label">统计</span>
+      <span class="nav-rail" aria-hidden="true"></span>
+    </a>
+    <a class="nav-link" href="#/settings" data-nav="settings">
+      <span class="nav-ico">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M12 2.6v2.6M12 18.8v2.6M21.4 12h-2.6M5.2 12H2.6M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8M18.6 18.6l-1.8-1.8M7.2 7.2L5.4 5.4"></path>
+        </svg>
+      </span>
+      <span class="nav-label">设置</span>
+      <span class="nav-rail" aria-hidden="true"></span>
+    </a>
+    <p class="sidenav-foot">题库 v1<br>本地存储 · 可离线</p>
+  </nav>
+
+  <main id="main" class="content" tabindex="-1"></main>
+</div>
+
+<nav class="tabbar" aria-label="底部导航">
+  <a class="tab-item" href="#/home" data-nav="home">
+    <span class="tab-ico">
+      <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 5.2h6.2A1.8 1.8 0 0 1 12 7v13a1.8 1.8 0 0 0-1.8-1.8H4z"></path>
+        <path d="M20 5.2h-6.2A1.8 1.8 0 0 0 12 7v13a1.8 1.8 0 0 1 1.8-1.8H20z"></path>
+      </svg>
+    </span>
+    <span class="tab-label">练习</span>
+  </a>
+  <a class="tab-item" href="#/wrong" data-nav="wrong">
+    <span class="tab-ico">
+      <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4.2L6 21V4.5a1 1 0 0 1 1-1z"></path>
+      </svg>
+    </span>
+    <span class="tab-label">错题</span>
+    <span class="nav-count" data-count="wrong" hidden>0</span>
+  </a>
+  <a class="tab-item" href="#/stats" data-nav="stats">
+    <span class="tab-ico">
+      <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 20.5h18"></path>
+        <path d="M6.5 20.5v-6"></path>
+        <path d="M12 20.5V5"></path>
+        <path d="M17.5 20.5v-9"></path>
+      </svg>
+    </span>
+    <span class="tab-label">统计</span>
+  </a>
+  <a class="tab-item" href="#/settings" data-nav="settings">
+    <span class="tab-ico">
+      <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M12 2.6v2.6M12 18.8v2.6M21.4 12h-2.6M5.2 12H2.6M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8M18.6 18.6l-1.8-1.8M7.2 7.2L5.4 5.4"></path>
+      </svg>
+    </span>
+    <span class="tab-label">设置</span>
+  </a>
+</nav>
+
+<noscript>
+  <p class="noscript">本页面需要启用 JavaScript 才能答题。</p>
+</noscript>
+<div id="overlay-root"></div>
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
